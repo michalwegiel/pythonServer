@@ -1,0 +1,50 @@
+action: GLOB, msg: packaging
+cwd: C:\Users\hj4791\PycharmProjects\pythonServer
+cmd: 'C:\Users\hj4791\AppData\Local\Programs\Python\Python39\python.exe' setup.py sdist --formats=zip --dist-dir '.tox\dist'
+running sdist
+running egg_info
+writing python_server.egg-info\PKG-INFO
+writing dependency_links to python_server.egg-info\dependency_links.txt
+writing entry points to python_server.egg-info\entry_points.txt
+writing top-level names to python_server.egg-info\top_level.txt
+reading manifest file 'python_server.egg-info\SOURCES.txt'
+writing manifest file 'python_server.egg-info\SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt, README.md
+
+running check
+warning: check: missing required meta-data: url
+
+creating python_server-0.1.0
+creating python_server-0.1.0\python_server
+creating python_server-0.1.0\python_server.egg-info
+copying files to python_server-0.1.0...
+copying setup.py -> python_server-0.1.0
+copying python_server\__init__.py -> python_server-0.1.0\python_server
+copying python_server\http_response.py -> python_server-0.1.0\python_server
+copying python_server\request_handler.py -> python_server-0.1.0\python_server
+copying python_server\response_factory.py -> python_server-0.1.0\python_server
+copying python_server\server.py -> python_server-0.1.0\python_server
+copying python_server.egg-info\PKG-INFO -> python_server-0.1.0\python_server.egg-info
+copying python_server.egg-info\SOURCES.txt -> python_server-0.1.0\python_server.egg-info
+copying python_server.egg-info\dependency_links.txt -> python_server-0.1.0\python_server.egg-info
+copying python_server.egg-info\entry_points.txt -> python_server-0.1.0\python_server.egg-info
+copying python_server.egg-info\top_level.txt -> python_server-0.1.0\python_server.egg-info
+Writing python_server-0.1.0\setup.cfg
+creating '.tox\dist\python_server-0.1.0.zip' and adding 'python_server-0.1.0' to it
+adding 'python_server-0.1.0'
+adding 'python_server-0.1.0\python_server'
+adding 'python_server-0.1.0\python_server.egg-info'
+adding 'python_server-0.1.0\PKG-INFO'
+adding 'python_server-0.1.0\setup.cfg'
+adding 'python_server-0.1.0\setup.py'
+adding 'python_server-0.1.0\python_server\http_response.py'
+adding 'python_server-0.1.0\python_server\request_handler.py'
+adding 'python_server-0.1.0\python_server\response_factory.py'
+adding 'python_server-0.1.0\python_server\server.py'
+adding 'python_server-0.1.0\python_server\__init__.py'
+adding 'python_server-0.1.0\python_server.egg-info\dependency_links.txt'
+adding 'python_server-0.1.0\python_server.egg-info\entry_points.txt'
+adding 'python_server-0.1.0\python_server.egg-info\PKG-INFO'
+adding 'python_server-0.1.0\python_server.egg-info\SOURCES.txt'
+adding 'python_server-0.1.0\python_server.egg-info\top_level.txt'
+removing 'python_server-0.1.0' (and everything under it)
