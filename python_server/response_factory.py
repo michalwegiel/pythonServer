@@ -15,9 +15,9 @@ def response_factory_get(route: str):
     view = routes.get(route, None)
     if view:
         content = view()
-        return HTTPResponseCode.OK, content
+        return HTTPResponseCode.OK, "OK", content
     with open(
         "python_server/pages/page_not_found.html", "r", encoding="UTF-8"
     ) as html_file:
         content = html_file.read()
-    return HTTPResponseCode.NOT_FOUND, content
+    return HTTPResponseCode.NOT_FOUND, "PAGE NOT FOUND", content
