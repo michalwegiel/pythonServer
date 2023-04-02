@@ -1,0 +1,6 @@
+.tox
+build
+dist
+.mypy_cache
+python_server.egg-info
+venv

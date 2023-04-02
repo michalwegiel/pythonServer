@@ -21,19 +21,25 @@ def handle_request(request: bytes) -> bytes:
     match request_method:
         case b"GET":
             # Call the response_factory_get() function with the route parameter.
-            status_code, status_info, content = response_factory_get(route=route.decode())
+            status_code, status_info, content_type, content = response_factory_get(
+                route=route.decode()
+            )
         case _:
             # Read the contents of the "bad_request.html" file and set the status code and status information.
             with open(
                 "python_server/pages/bad_request.html", "r", encoding="UTF-8"
             ) as html_file:
-                status_code, status_info, content = (
+                status_code, status_info, content_type, content = (
                     HTTPResponseCode.BAD_REQUEST,
+                    "text/html",
                     "BAD REQUEST",
                     html_file.read(),
                 )
 
     # Create an HTTPResponse object and return the result of calling the produce_response() method.
     return HTTPResponse(
-        status_code=status_code, status_info=status_info, content=content
+        status_code=status_code,
+        status_info=status_info,
+        content_type=content_type,
+        content=content,
     ).produce_response()
