@@ -1,9 +1,25 @@
-.tox
-build
-dist
-.mypy_cache
-python_server.egg-info
-venv
-.idea
-*.iml
-*.zip
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development configuration
+.env
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDE files
+.idea/
+.vscode/
+
+# Compiled source
+*.pyc
+*.pyo
+
+# Miscellaneous
+*.swp
+.DS_Store
+Thumbs.db
