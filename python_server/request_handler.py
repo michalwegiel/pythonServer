@@ -1,5 +1,6 @@
 from python_server.http_response import HTTPResponse, HTTPResponseCode
-from python_server.response_factory import response_factory_get, response_factory_post
+from python_server.response_factory import (response_factory_get,
+                                            response_factory_post)
 
 
 def handle_request(request: bytes) -> bytes:

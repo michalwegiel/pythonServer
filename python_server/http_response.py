@@ -45,11 +45,11 @@ class HTTPResponse:
     SERVER_TIMING: str = "Server-Timing: miss, db;dur=50, app;dur=50"
 
     def __init__(
-            self,
-            status_code: int,
-            status_info: str = "",
-            content_type: str = "text/html",
-            content: str | bytes = "",
+        self,
+        status_code: int,
+        status_info: str = "",
+        content_type: str = "text/html",
+        content: str | bytes = "",
     ) -> None:
         """
         Initializes a new HTTPResponse object with the specified status code,
@@ -65,9 +65,7 @@ class HTTPResponse:
             The content to be included in the response.
         """
         self.status_code, self.status_info = status_code, status_info
-        self.status_line: str = (
-            f"{self.PROTOCOL_VERSION} {self.status_code} {self.status_info}"
-        )
+        self.status_line: str = f"{self.PROTOCOL_VERSION} {self.status_code} {self.status_info}"
         self.content_type = f"Content-Type: {content_type}"
         self.content = content
 
@@ -116,9 +114,7 @@ class HTTPResponseRedirect:
 
     def __init__(self, location):
         self.location = location
-        self.status_line: str = (
-            f"{self.PROTOCOL_VERSION} {self.status_code} {self.status_info}"
-        )
+        self.status_line: str = f"{self.PROTOCOL_VERSION} {self.status_code} {self.status_info}"
 
     def produce_response(self) -> bytes:
         """
@@ -129,7 +125,5 @@ class HTTPResponseRedirect:
         bytes
             The HTTP response message as a bytes object.
         """
-        response: str = (
-            f"{self.status_line}\r\nLocation:{self.location}\r\n\r\n"
-        )
+        response: str = f"{self.status_line}\r\nLocation:{self.location}\r\n\r\n"
         return response.encode()
