@@ -89,9 +89,7 @@ class TCPServer:
                 continue
             print(f"New connection from {client_address}")
             task_id = uuid.uuid4()
-            client_thread = threading.Thread(
-                target=self._handle_client, args=(client_socket, task_id), daemon=True
-            )
+            client_thread = threading.Thread(target=self._handle_client, args=(client_socket, task_id), daemon=True)
             self._clients[task_id] = client_thread
             client_thread.start()
 
@@ -123,9 +121,7 @@ class TCPServer:
             client_socket.sendall(response)
         self._disconnect_client(client_socket, task_id)
 
-    def _disconnect_client(
-        self, client_socket: socket.socket, task_id: uuid.UUID
-    ) -> None:
+    def _disconnect_client(self, client_socket: socket.socket, task_id: uuid.UUID) -> None:
         """
         Closes the client socket and cancels the client thread.
 

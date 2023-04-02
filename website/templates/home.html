@@ -4,13 +4,11 @@
 
 {% block content %}
     <h1>Recipe Form</h1>
-    <form method="post" action="process_recipe.php">
+    <form method="post" action="recipe_form">
       <label for="recipe-name">Recipe Name:</label>
       <input type="text" id="recipe-name" name="recipe-name"><br><br>
       <label for="ingredients">Ingredients:</label>
       <textarea id="ingredients" name="ingredients"></textarea><br><br>
-      <label for="amounts">Amounts:</label>
-      <textarea id="amounts" name="amounts"></textarea><br><br>
       <label for="notes">Notes:</label>
       <textarea id="notes" name="notes"></textarea><br><br>
       <button type="submit">Save Recipe</button>

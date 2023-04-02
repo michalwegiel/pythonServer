@@ -1,5 +1,15 @@
-from python_server.http_response import HTTPResponseCode
-from website.routes import routes
+from functools import cache
+from urllib.parse import parse_qs
+from python_server.http_response import HTTPResponse, HTTPResponseCode, HTTPResponseRedirect
+from python_server.utils import Redirect
+from website.routes import routes, actions
+
+
+@cache
+def page_not_found():
+    with open("python_server/pages/page_not_found.html", "r", encoding="UTF-8") as html_file:
+        content = html_file.read()
+    return HTTPResponse(status_code=HTTPResponseCode.NOT_FOUND, status_info="PAGE NOT FOUND", content_type="text/html", content=content)
 
 
 def response_factory_get(route: str):
@@ -15,9 +25,18 @@ def response_factory_get(route: str):
     view = routes.get(route, None)
     if view is not None:
         content_type, content = view()  # type: ignore
-        return HTTPResponseCode.OK, "OK", content_type, content
-    with open(
-        "python_server/pages/page_not_found.html", "r", encoding="UTF-8"
-    ) as html_file:
-        content_type, content = "text/html", html_file.read()
-    return HTTPResponseCode.NOT_FOUND, "PAGE NOT FOUND", content_type, content
+        return HTTPResponse(status_code=HTTPResponseCode.OK, status_info="OK", content_type=content_type, content=content)
+    return page_not_found()
+
+
+def response_factory_post(action: str, data: str):
+    parsed_data = {k.replace("-", "_"): v[0] for k, v in parse_qs(qs=data, keep_blank_values=True).items()}
+    action = actions.get(action, None)
+    if action is not None:
+        action_result = action(**parsed_data)  # type: ignore
+        if isinstance(action_result, Redirect):
+            location = action_result.location
+            return HTTPResponseRedirect(location=location)
+        content_type, content = action_result
+        return HTTPResponse(status_code=HTTPResponseCode.OK, status_info="OK", content_type=content_type, content=content)
+    return page_not_found()

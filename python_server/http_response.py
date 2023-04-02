@@ -1,12 +1,11 @@
-from enum import Enum
-
-
-class HTTPResponseCode(Enum):
+class HTTPResponseCode:
     """Enum class with predefined HTTP response codes"""
+
     OK: int = 200
     CREATED: int = 201
     ACCEPTED: int = 202
 
+    REDIRECT: int = 301
     TEMPORARY_REDIRECT: int = 307
     PERMANENT_REDIRECT: int = 308
 
@@ -46,11 +45,11 @@ class HTTPResponse:
     SERVER_TIMING: str = "Server-Timing: miss, db;dur=50, app;dur=50"
 
     def __init__(
-        self,
-        status_code: int,
-        status_info: str = "",
-        content_type: str = "text/html",
-        content: str | bytes = "",
+            self,
+            status_code: int,
+            status_info: str = "",
+            content_type: str = "text/html",
+            content: str | bytes = "",
     ) -> None:
         """
         Initializes a new HTTPResponse object with the specified status code,
@@ -108,3 +107,29 @@ class HTTPResponse:
             f"HTTPResponse(status_code={self.status_code}, "
             f"status_info='{self.status_info}', content='{self.content!r}')"
         )
+
+
+class HTTPResponseRedirect:
+    PROTOCOL_VERSION: str = "HTTP/1.1"
+    status_code: int = HTTPResponseCode.REDIRECT
+    status_info: str = "REDIRECT"
+
+    def __init__(self, location):
+        self.location = location
+        self.status_line: str = (
+            f"{self.PROTOCOL_VERSION} {self.status_code} {self.status_info}"
+        )
+
+    def produce_response(self) -> bytes:
+        """
+        Produces a bytes representation of the HTTP 301 (Redirect) response message.
+
+        Returns
+        -------
+        bytes
+            The HTTP response message as a bytes object.
+        """
+        response: str = (
+            f"{self.status_line}\r\nLocation:{self.location}\r\n\r\n"
+        )
+        return response.encode()
