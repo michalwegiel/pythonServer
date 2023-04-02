@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class HTTPResponseCode(Enum):
+    """Enum class with predefined HTTP response codes"""
     OK: int = 200
     CREATED: int = 201
     ACCEPTED: int = 202

@@ -4,3 +4,6 @@ dist
 .mypy_cache
 python_server.egg-info
 venv
+.idea
+*.iml
+*.zip
